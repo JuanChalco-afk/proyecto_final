@@ -21,8 +21,7 @@
     <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
 
         <!-- NAVBAR -->
-        <nav
-            class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+        <nav class="navbar custom-navbar navbar-expand-md navbar-dark fixed-top"
             data-spy="affix" data-offset-top="10">
             <div class="container">
                 <a class="navbar-brand" href="#">
@@ -30,8 +29,9 @@
                         src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
                         alt="HardNet">
                 </a>
-                <button class="navbar-toggler btn-light" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <button class="navbar-toggler ml-auto" type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 

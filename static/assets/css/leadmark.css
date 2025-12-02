@@ -11542,16 +11542,20 @@ textarea.form-control {
 .navbar.custom-navbar.affix {
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
-    background: #fff;
-    border-bottom: 1px solid #dee2e6;
+    background: #000 !important;
+    /* negro */
+    border-bottom: none;
+    /* opcional: eliminar borde */
 }
 
 .navbar.custom-navbar.affix .nav-link {
-    color: #444;
+    color: #fff !important;
+    /* blanco */
 }
 
 .navbar.custom-navbar.affix .nav-link:hover {
-    color: #000;
+    color: #ff6e42 !important;
+    /* hover naranja (opcional) */
 }
 
 .pagination .page-item {

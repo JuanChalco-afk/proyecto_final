@@ -1,0 +1,166 @@
+{% extends "layouts/base.html" %} {% block content %}
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+
+<style>
+    /* Fondo de pantalla completo */
+    
+    body {
+        background: url("{{ url_for('static', filename='assets/imgs/cliente.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    /* Capa de oscurecimiento */
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        /* ← Cambia este valor */
+        z-index: -1;
+        /* Mantiene el contenido por encima */
+    }
+    /* Formulario transparente */
+    
+    #login-card {
+        background: rgba(0, 0, 0, 0.45);
+        /* Transparencia */
+        backdrop-filter: blur(4px);
+        border-radius: 15px;
+        padding: 30px;
+    }
+</style>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- NAVBAR ESPECIAL PARA CLIENTE -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+        data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img
+                    src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                    alt="HardNet">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button"
+                data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('cliente_controller.dashboard') }}">Productos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('cliente_controller.carrito') }}">Ver
+                            Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('cliente_controller.pedidos') }}">Mis
+                            Pedidos</a>
+                    </li>
+                    <!-- CERRAR SESION -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle btn btn-primary btn-sm rounded text-white ml-3"
+                                href="#" data-bs-toggle="dropdown">{{
+                                session.usuario }}</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('auth_controller.logout') }}">Cerrar
+                                        Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- JS Scripts -->
+    <script
+        src="{{ url_for('static', filename='assets/vendors/jquery/jquery-3.4.1.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.bundle.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.affix.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/isotope/isotope.pkgd.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/js/leadmark.js') }}"></script>
+
+</body>
+
+<!-- ESPACIO PARA QUE NO SE OCUPE LA NAVBAR -->
+<div style="margin-top: 100px;"></div>
+
+<h2 class="text-white">Realizar Pedido</h2>
+
+<form method="POST" enctype="multipart/form-data"
+    action="{{ url_for('cliente_controller.procesar_realizar_pedido') }}">
+
+    <h4 class="text-white">Productos en carrito:</h4>
+    <ul class="text-white">
+        {% for p in productos %}
+        <li>{{ p.nombre }} - Cantidad: {{ p.cantidad }} - Subtotal: ${{
+            "%.2f"|format(p.subtotal) }}</li>
+        {% endfor %}
+    </ul>
+
+    <p class="text-primary">Total: <strong>${{ "%.2f"|format(total)
+            }}</strong></p>
+
+    <div class="mb-3">
+        <label class="text-white">Dirección de entrega:</label>
+        <input type="text" name="direccion_entrega"
+            class="form-control text-white" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="text-white">Tipo de pago:</label>
+        <select name="tipo_pago" class="form-control text-white" id="tipo_pago"
+            required onchange="mostrarComprobante()">
+            {% for tp in tipos_pago %}
+            <option class="text-primary" value="{{ tp }}">{{ tp }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3" id="comprobante_div" style="display:none;">
+        <label class="text-white">Subir comprobante de pago:</label>
+        <input type="file" name="comprobante" class="form-control">
+    </div>
+
+    <div class="mb-3 ">
+        <p class="text-white ">Número de cuenta / QR:
+            <strong>1234-5678-9012</strong></p>
+        <img src="{{ url_for( 'static', filename='assets/imgs/qr.png' ) }} "
+            alt="QR " style="width:150px; ">
+    </div>
+
+    <button type="submit " class="btn btn-success ">Confirmar Pedido</button>
+</form>
+<div style="margin-top: 100px; "></div>
+
+<script>
+    function mostrarComprobante() {
+        var tipo = document.getElementById('tipo_pago').value;
+        var div = document.getElementById('comprobante_div');
+        if (tipo == 'Tarjeta' || tipo == 'Transferencia') {
+            div.style.display = 'block';
+        } else {
+            div.style.display = 'none';
+        }
+    }
+</script>
+
+{% endblock %}

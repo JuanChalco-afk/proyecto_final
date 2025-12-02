@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description"
+            content="HardNet | E-commerce de productos tecnológicos">
+        <meta name="author" content="HardNet">
+        <title>HardNet | Tecnología y E-commerce</title>
+
+        <!-- Icons -->
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+        <!-- Main Styles -->
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+    </head>
+
+    <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+        <!-- NAVBAR -->
+        <nav
+            class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+            data-spy="affix" data-offset-top="10">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                        alt="HardNet">
+                </a>
+                <button class="navbar-toggler ml-auto" type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse"
+                    id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#products">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#nosotros">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#blog">Novedades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contacto</a>
+                        </li>
+                        <li class="nav-item"> <a
+                                href="{{ url_for('auth_controller.login') }}"
+                                class="ml-4 nav-link btn btn-primary btn-sm rounded">Ingresar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="overlay">
+                <h1 class="subtitle">Compra - Venta de Productos Tecnológicos
+                </h1>
+                <h1 class="title">HardNet · Tecnología a tu Alcance</h1>
+            </div>
+            <div class="shape">
+                <svg viewBox="0 0 1500 200">
+                    <path
+                        d="m 0,240 h 1500.4828 v -71.92164 c 0,0 -286.2763,-81.79324 -743.19024,-81.79324 C 300.37862,86.28512 0,168.07836 0,168.07836 Z">
+                    </path>
+                </svg>
+            </div>
+            <div class="mouse-icon">
+                <div class="wheel"></div>
+            </div>
+        </header>
+
+        <!-- PRODUCTS -->
+        <section id="products" class="section pt-0">
+            <div class="container">
+                <h6 class="section-title text-center">Productos Destacados</h6>
+                <h6 class="section-subtitle text-center mb-5 pb-3">Calidad al
+                    mejor precio</h6>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/hp.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">HP Pavilion</h5>
+                                <p>450.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/ssd.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">SSD 512GB</h5>
+                                <p>120.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/ram16.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Memoria RAM 16GB</h5>
+                                <p>75.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/g203.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Mouse Logitech G203</h5>
+                                <p>28.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/k552.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Teclado Mecánico Redragon
+                                    K552
+                                </h5>
+                                <p>45.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/ax1500.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Router TP-Link AX1500
+                                </h5>
+                                <p>89.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/cloud2.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Auriculares HyperX Cloud
+                                    II
+                                </h5>
+                                <p>95.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/monitor24.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Monitor Samsung 24</h5>
+                                <p>140.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 mb-md-0">
+                            <div class="card-body text-center">
+                                <img src="static/uploads/hubusb.png"
+                                    class="w-75 mb-3" alt>
+                                <h5 class="card-title">Hub USB 3.0</h5>
+                                <p>18.0</p>
+                                <button
+                                    class="btn btn-primary btn-sm rounded"><a
+                                        href="{{ url_for('auth_controller.login') }}"
+                                        class="btn-primary">Agregar
+                                        al carrito</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SERVICIOS -->
+        <section id="service" class="section pt-0">
+            <div class="container">
+
+                <h6 class="section-title text-center">Nuestros Servicios</h6>
+                <h3 class="section-subtitle text-center mb-5"
+                    style="color:#7b002c;">
+                    Soluciones tecnológicas para todos
+                </h3>
+
+                <div class="row">
+
+                    <!-- SERVICIO 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <span class="ti-package mb-3"
+                                    style="font-size:40px; color:#7b002c;"></span>
+                                <h5 class="card-title mt-3">Venta de Hardware
+                                </h5>
+                                <p class="mb-0 text-muted">
+                                    Componentes, laptops, PCs, tarjetas
+                                    gráficas, almacenamiento, routers y más.
+                                    Productos originales con garantía.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICIO 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <span class="ti-headphone-alt mb-3"
+                                    style="font-size:40px; color:#7b002c;"></span>
+                                <h5 class="card-title mt-3">Asesoría Tecnológica
+                                </h5>
+                                <p class="mb-0 text-muted">
+                                    Te ayudamos a elegir el mejor equipo para tu
+                                    trabajo, estudios, emprendimiento o gaming.
+                                    Atención personalizada.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICIO 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <span class="ti-shopping-cart mb-3"
+                                    style="font-size:40px; color:#7b002c;"></span>
+                                <h5 class="card-title mt-3">Venta de Accesorios
+                                </h5>
+                                <p class="mb-0 text-muted">
+                                    Teclados, mouse, audífonos, pads, sillas
+                                    gamer, micrófonos, cables, hubs y todo para
+                                    tu setup.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICIO 4 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <span class="ti-stats-up mb-3"
+                                    style="font-size:40px; color:#7b002c;"></span>
+                                <h5 class="card-title mt-3">Soluciones para
+                                    Empresas
+                                </h5>
+                                <p class="mb-0 text-muted">
+                                    Equipamiento empresarial, redes,
+                                    almacenamiento, equipos de oficina y
+                                    soluciones para coworking.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICIO 5 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <span class="ti-desktop mb-3"
+                                    style="font-size:40px; color:#7b002c;"></span>
+                                <h5 class="card-title mt-3">Armado de PC por
+                                    Encargo
+                                </h5>
+                                <p class="mb-0 text-muted">
+                                    Armamos tu PC a la medida: oficina, hogar,
+                                    diseño, gaming o servidores. Solo con
+                                    hardware original.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICIO 6 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <span class="ti-exchange-vertical mb-3"
+                                    style="font-size:40px; color:#7b002c;"></span>
+                                <h5 class="card-title mt-3">Compra de Equipos
+                                </h5>
+                                <p class="mb-0 text-muted">
+                                    Compramos laptops y computadoras en buen
+                                    estado, con evaluación justa y pago
+                                    inmediato.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NOSOTROS -->
+        <section id="nosotros" class="section">
+            <div class="container">
+
+                <div class="row align-items-center">
+
+                    <!-- TEXTO -->
+                    <div class="col-lg-6 mb-4">
+
+                        <h6 class="section-title text-white">Sobre HARDNET</h6>
+                        <h3 class="mb-4"
+                            style="color:#7b002c; font-weight:700;">Tecnología
+                            que impulsa tu mundo</h3>
+
+                        <p class="mb-4">
+                            Somos una empresa especializada en tecnología,
+                            ofreciendo productos de alto rendimiento, accesorios
+                            premium y soluciones modernas para el hogar,
+                            negocios y gamers.
+                            <br><br> Garantizamos calidad, soporte técnico y
+                            atención personalizada para que encuentres
+                            exactamente lo que necesitas.
+                        </p>
+
+                        <div class="row mt-4">
+
+                            <div class="col-sm-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="ti-medall icon-lg mr-3"
+                                        style="font-size:35px; color:#7b002c;"></span>
+                                    <div>
+                                        <h6 class="mb-0">Productos Originales
+                                        </h6>
+                                        <small class="text-muted">Garantía
+                                            oficial</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="ti-truck icon-lg mr-3"
+                                        style="font-size:35px; color:#7b002c;"></span>
+                                    <div>
+                                        <h6 class="mb-0">Envíos Nacionales</h6>
+                                        <small class="text-muted">Rápidos y
+                                            seguros</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="ti-headphone-alt icon-lg mr-3"
+                                        style="font-size:35px; color:#7b002c;"></span>
+                                    <div>
+                                        <h6 class="mb-0">Soporte Técnico</h6>
+                                        <small class="text-muted">Atención
+                                            personalizada</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="ti-shield icon-lg mr-3"
+                                        style="font-size:35px; color:#7b002c;"></span>
+                                    <div>
+                                        <h6 class="mb-0">100% Confiable</h6>
+                                        <small class="text-muted">Compra
+                                            segura</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- IMAGEN -->
+                    <div class="col-lg-6 text-center">
+                        <img
+                            src="{{ url_for('static', filename='assets/imgs/nosotros.jpg') }}"
+                            class="w-100 rounded shadow-lg"
+                            alt="Nosotros HARDNET"
+                            style="max-height:430px; object-fit:cover;">
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BLOG -->
+        <section class="section" id="blog">
+            <div class="container">
+                <h6 class="section-title mb-0 text-center">Noticias Tecnológicas
+                </h6>
+                <h6 class="section-subtitle mb-5 text-center">Actualizaciones ·
+                    Lanzamientos · Reviews</h6>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card border-0 mb-4">
+                            <img
+                                src="{{ url_for('static', filename='assets/imgs/news1.jpg') }}"
+                                alt class="card-img-top w-100">
+                            <div class="card-body">
+                                <h6 class="card-title">Nuevas GPU 2025</h6>
+                                <p>Comparativa completa entre las nuevas
+                                    tarjetas NVIDIA y AMD.</p>
+                                <a href="#" class="small text-muted">Leer
+                                    más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card border-0 mb-4">
+                            <img
+                                src="{{ url_for('static', filename='assets/imgs/news2.jpg') }}"
+                                alt class="card-img-top w-100">
+                            <div class="card-body">
+                                <h6 class="card-title">Laptops para
+                                    programadores
+                                </h6>
+                                <p>Top 5 laptops recomendadas para desarrollo en
+                                    2025.
+                                </p>
+                                <a href="#" class="small text-muted">Leer
+                                    más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card border-0 mb-4">
+                            <img
+                                src="{{ url_for('static', filename='assets/imgs/news3.jpg') }}"
+                                alt class="card-img-top w-100">
+                            <div class="card-body">
+                                <h6 class="card-title">Equipos reacondicionados
+                                </h6>
+                                <p>Ventajas de comprar hardware refurb con
+                                    garantía.
+                                </p>
+                                <a href="#" class="small text-muted">Leer
+                                    más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section has-img-bg pb-0">
+            <div class="container">
+                <div class="row align-items-center">
+
+                    <div class="col-md-5 my-3">
+                        <h6 class="mb-0">Teléfono</h6>
+                        <p class="mb-4">+591 7X XXX XXX</p>
+
+                        <h6 class="mb-0">Dirección</h6>
+                        <p class="mb-4">Calle Ejemplo Nº 123 · Cochabamba ·
+                            Bolivia
+                        </p>
+
+                        <h6 class="mb-0">Email</h6>
+                        <p class="mb-0">contacto@hardnet.com</p>
+                    </div>
+
+                    <div class="col-md-7">
+                        <form id="form-contacto"
+                            onsubmit="return validarFormulario()">
+                            <h4 class="mb-4">Contáctanos</h4>
+
+                            <div class="form-row">
+                                <div class="form-group col-sm-4">
+                                    <input type="text" id="nombre"
+                                        class="form-control text-white bg-transparent"
+                                        placeholder="Nombre">
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <input type="email" id="email"
+                                        class="form-control text-white bg-transparent"
+                                        placeholder="Email">
+                                </div>
+
+                                <div class="form-group col-sm-4">
+                                    <input type="text" id="asunto"
+                                        class="form-control text-white bg-transparent"
+                                        placeholder="Asunto">
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <textarea rows="4" id="mensaje"
+                                        class="form-control text-white bg-transparent"
+                                        placeholder="Mensaje"></textarea>
+                                </div>
+
+                                <!-- ALERTA -->
+                                <div id="msg-enviado"
+                                    class="alert alert-success d-none col-12 mt-3">
+                                    ✔ Tu mensaje fue enviado. Nos pondremos en
+                                    contacto contigo.
+                                </div>
+
+                                <div id="msg-error"
+                                    class="alert alert-danger d-none col-12 mt-3">
+                                    ⚠ Debes completar todos los campos.
+                                </div>
+
+                                <div class="form-group col-12 mb-0">
+                                    <button type="submit"
+                                        class="btn btn-primary rounded w-md mt-3">
+                                        Enviar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <script>
+                        function validarFormulario() {
+                            const nombre = document.getElementById("nombre").value.trim();
+                            const email = document.getElementById("email").value.trim();
+                            const asunto = document.getElementById("asunto").value.trim();
+                            const mensaje = document.getElementById("mensaje").value.trim();
+
+                            const alertaOk = document.getElementById("msg-enviado");
+                            const alertaError = document.getElementById("msg-error");
+
+                            // Ocultar alertas antes de validar
+                            alertaOk.classList.add("d-none");
+                            alertaError.classList.add("d-none");
+
+                            // Validación
+                            if (!nombre || !email || !asunto || !mensaje) {
+                                alertaError.classList.remove("d-none");
+                                return false; // no envía nada
+                            }
+
+                            // Si está todo correcto → mostrar OK
+                            alertaOk.classList.remove("d-none");
+
+                            // Limpiar los campos después de enviar
+                            document.getElementById("form-contacto").reset();
+
+                            return false; // evita recargar la página
+                        }
+                    </script>
+
+                    </div>
+
+                </div>
+
+                <!-- FOOTER -->
+                <footer class="mt-5 py-4 border-top border-secondary">
+                    <p class="mb-0 small">
+                        &copy;
+                        <script>
+                        document.write(new Date().getFullYear())
+                    </script> HardNet · Todos los derechos reservados
+                    </p>
+                </footer>
+            </div>
+        </section>
+
+        <!-- JS Scripts -->
+        <script
+            src="{{ url_for('static', filename='assets/vendors/jquery/jquery-3.4.1.js') }}"></script>
+        <script
+            src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.bundle.js') }}"></script>
+        <script
+            src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.affix.js') }}"></script>
+        <script
+            src="{{ url_for('static', filename='assets/vendors/isotope/isotope.pkgd.js') }}"></script>
+        <script
+            src="{{ url_for('static', filename='assets/js/leadmark.js') }}"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,137 @@
+{% extends "layouts/base.html" %} {% block content %}
+
+<!-- Estilos necesarios -->
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+
+<style>
+    /* Fondo de pantalla completo */
+    
+    body {
+        background: url("{{ url_for('static', filename='assets/imgs/section.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    /* Capa de oscurecimiento */
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        /* ← Cambia este valor */
+        z-index: -1;
+        /* Mantiene el contenido por encima */
+    }
+    /* Formulario transparente */
+    
+    #login-card {
+        background: rgba(0, 0, 0, 0.45);
+        /* Transparencia */
+        backdrop-filter: blur(4px);
+        border-radius: 15px;
+        padding: 30px;
+    }
+</style>
+<!-- NAVBAR -->
+<nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+    data-spy="affix" data-offset-top="10">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                alt="HardNet">
+        </a>
+        <button class="navbar-toggler ml-auto" type="button"
+            data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"> <a
+                        href="{{ url_for('auth_controller.logout') }}"
+                        class="ml-4 nav-link btn btn-primary btn-sm rounded">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section
+    class="d-flex align-items-center justify-content-center body has-img-bg pb-0"
+    style="min-height: 100vh;">
+    <!-- ocupa toda la pantalla -->
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-7 col-lg-5">
+                <form id="form-login" method="POST"
+                    action="{{ url_for('auth_controller.login') }}"
+                    onsubmit="return validarLogin()" id="login-card"
+                    class="p-4 form-box text-white shadow-lg">
+
+                    <h3 class="mb-4 text-center">Iniciar Sesión</h3>
+
+                    <!-- EMAIL -->
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" id="email"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Correo electrónico">
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group mb-3">
+                        <input type="password" name="password" id="password"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Contraseña">
+                    </div>
+
+                    <!-- ALERTA -->
+                    <div id="login-error"
+                        class="alert alert-danger d-none mt-3">
+                        ⚠ Debes completar todos los campos.
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-primary w-100 mt-3 rounded">
+                        Entrar
+                    </button>
+
+                    <p class="mt-3 text-center">
+                        ¿No tienes cuenta?
+                        <a
+                            href="{{ url_for('auth_controller.registro_cliente') }}"
+                            class="text-primary">
+                            Crear cuenta
+                        </a>
+                    </p>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    function validarLogin() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const alerta = document.getElementById("login-error");
+
+        alerta.classList.add("d-none");
+
+        if (!email || !password) {
+            alerta.classList.remove("d-none");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "layouts/base.html" %} {% block content %}
+
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+
+<style>
+    /* Fondo de pantalla completo */
+    
+    body {
+        background: url("{{ url_for('static', filename='assets/imgs/cliente.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    /* Capa de oscurecimiento */
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        /* ← Cambia este valor */
+        z-index: -1;
+        /* Mantiene el contenido por encima */
+    }
+    /* Formulario transparente */
+    
+    #login-card {
+        background: rgba(0, 0, 0, 0.45);
+        /* Transparencia */
+        backdrop-filter: blur(4px);
+        border-radius: 15px;
+        padding: 30px;
+    }
+</style>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- NAVBAR ESPECIAL PARA CLIENTE -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+        data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img
+                    src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                    alt="HardNet">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button"
+                data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('cliente_controller.dashboard') }}">Productos</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('cliente_controller.carrito') }}">Ver
+                            Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('cliente_controller.pedidos') }}">Mis
+                            Pedidos</a>
+                    </li>
+                    <!-- CERRAR SESION -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle btn btn-primary btn-sm rounded text-white ml-3"
+                                href="#" data-bs-toggle="dropdown">{{
+                                session.usuario }}</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('auth_controller.logout') }}">Cerrar
+                                        Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- JS Scripts -->
+    <script
+        src="{{ url_for('static', filename='assets/vendors/jquery/jquery-3.4.1.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.bundle.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.affix.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/isotope/isotope.pkgd.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/js/leadmark.js') }}"></script>
+
+</body>
+
+<!-- ESPACIO PARA QUE NO SE OCUPE LA NAVBAR -->
+<div style="margin-top: 100px;"></div>
+<div class="container mt-5">
+
+    <h2 class="text-white mb-4">Mi Carrito</h2>
+
+    {% if productos|length == 0 %}
+    <p class="text-white">El carrito está vacío.</p>
+    {% else %}
+
+    <table class="table table-dark table-bordered text-center">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for p in productos %}
+            <tr>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.cantidad }}</td>
+                <td>$ {{ "%.2f"|format(p.subtotal) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    <h3 class="text-white">Total: ${{ "%.2f"|format(total) }}</h3>
+    <a href="{{ url_for('cliente_controller.mostrar_realizar_pedido') }}"
+        class="btn btn-success">
+        Realizar Pedido
+    </a> {% endif %}
+
+</div>
+<div style="margin-top: 100px;"></div>
+{% endblock %}

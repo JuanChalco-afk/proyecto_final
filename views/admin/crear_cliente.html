@@ -1,0 +1,197 @@
+{% extends "layouts/base.html" %} {% block content %}
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+
+<style>
+    /* Fondo de pantalla completo */
+    
+    body {
+        background: url("{{ url_for('static', filename='assets/imgs/cliente.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        /* Letras blancas por defecto */
+    }
+    /* Capa de oscurecimiento */
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        z-index: -1;
+    }
+    /* Tarjetas transparentes de productos */
+    
+    .producto-card {
+        background: rgba(0, 0, 0, 0.45);
+        /* Fondo semi-transparente */
+        backdrop-filter: blur(4px);
+        border-radius: 15px;
+        padding: 20px;
+        color: white;
+        /* Letras blancas */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        /* Sombra suave */
+    }
+    
+    .producto-card .card-title,
+    .producto-card .card-text,
+    .producto-card p,
+    .producto-card strong {
+        color: white;
+    }
+</style>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- NAVBAR ESPECIAL PARA CLIENTE -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+        data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img
+                    src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                    alt="HardNet">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button"
+                data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.dashboard') }}">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('pedido_controller.listar_pedidos') }}">Aprobar
+                            Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.listar_ventas') }}">Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.clientes') }}">
+                            Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.empleados') }}">
+                            Empleados
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.proveedores') }}">
+                            Proveedores
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.categorias') }}">
+                            Categoría
+                        </a>
+                    </li>
+
+                    <!-- CERRAR SESION -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle btn btn-primary btn-sm rounded text-white ml-3"
+                                href="#" data-bs-toggle="dropdown">{{
+                                session.usuario }}</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('auth_controller.logout') }}">Cerrar
+                                        Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- JS Scripts -->
+    <script
+        src="{{ url_for('static', filename='assets/vendors/jquery/jquery-3.4.1.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.bundle.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.affix.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/isotope/isotope.pkgd.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/js/leadmark.js') }}"></script>
+
+</body>
+
+<!-- ESPACIO PARA QUE NO SE OCUPE LA NAVBAR -->
+<section
+    class="d-flex align-items-center justify-content-center body has-img-bg pb-0"
+    style="min-height: 100vh;" id="registro-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-7 col-lg-5">
+                <form method="POST" class="p-4 form-box text-white shadow-lg">
+
+                    <h3 class="mb-4 text-center">Crear Cuenta (Clienta)</h3>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="usuario" id="usuario"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Usuario">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" id="email"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Correo electrónico">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="telefono" id="telefono"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Teléfono">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="direccion" id="direccion"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Dirección">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="password" name="password" id="password"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Contraseña">
+                    </div>
+
+                    <!-- ALERTA -->
+                    <div id="registro-error"
+                        class="alert alert-danger d-none mt-3">
+                        ⚠ Debes completar todos los campos.
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-primary w-100 mt-3 rounded">
+                        Registrar
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

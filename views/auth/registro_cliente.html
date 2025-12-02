@@ -1,0 +1,148 @@
+{% extends "layouts/base.html" %} {% block content %}
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+
+<style>
+    /* Fondo de pantalla completo */
+    
+    body {
+        background: url("{{ url_for('static', filename='assets/imgs/section.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        /* ← Cambia este valor */
+        z-index: -1;
+        /* Mantiene el contenido por encima */
+    }
+    /* Formulario transparente */
+    
+    #login-card {
+        background: rgba(0, 0, 0, 0.45);
+        /* Transparencia */
+        backdrop-filter: blur(4px);
+        border-radius: 15px;
+        padding: 30px;
+    }
+</style>
+<!-- NAVBAR -->
+<nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+    data-spy="affix" data-offset-top="10">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                alt="HardNet">
+        </a>
+        <button class="navbar-toggler ml-auto" type="button"
+            data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"> <a
+                        href="{{ url_for('auth_controller.logout') }}"
+                        class="ml-4 nav-link btn btn-primary btn-sm rounded">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section
+    class="d-flex align-items-center justify-content-center body has-img-bg pb-0"
+    style="min-height: 100vh;" id="registro-bg">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-7 col-lg-5">
+                <form id="form-registro" method="POST"
+                    action="{{ url_for('auth_controller.registro_cliente') }}"
+                    onsubmit="return validarRegistro()"
+                    class="p-4 form-box text-white shadow-lg">
+
+                    <h3 class="mb-4 text-center">Crear Cuenta (Cliente)</h3>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="usuario" id="usuario"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Usuario">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="email" name="email" id="email"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Correo electrónico">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="telefono" id="telefono"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Teléfono">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="text" name="direccion" id="direccion"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Dirección">
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <input type="password" name="password" id="password"
+                            class="form-control text-white bg-transparent"
+                            placeholder="Contraseña">
+                    </div>
+
+                    <!-- ALERTA -->
+                    <div id="registro-error"
+                        class="alert alert-danger d-none mt-3">
+                        ⚠ Debes completar todos los campos.
+                    </div>
+
+                    <button type="submit"
+                        class="btn btn-primary w-100 mt-3 rounded">
+                        Registrar
+                    </button>
+
+                    <p class="mt-3 text-center">
+                        ¿Ya tienes cuenta?
+                        <a href="{{ url_for('auth_controller.login') }}"
+                            class="text-primary">Iniciar sesión</a>
+                    </p>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script>
+    function validarRegistro() {
+        const usuario = document.getElementById("usuario").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const tel = document.getElementById("telefono").value.trim();
+        const dir = document.getElementById("direccion").value.trim();
+        const pass = document.getElementById("password").value.trim();
+        const alerta = document.getElementById("registro-error");
+
+        alerta.classList.add("d-none");
+
+        if (!usuario || !email || !tel || !dir || !pass) {
+            alerta.classList.remove("d-none");
+            return false;
+        }
+
+        return true; // Envía al backend
+    }
+</script>
+
+{% endblock %}

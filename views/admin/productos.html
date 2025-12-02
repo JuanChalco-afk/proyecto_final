@@ -1,0 +1,185 @@
+{% extends "layouts/base.html" %} {% block content %}
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/vendors/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet"
+    href="{{ url_for('static', filename='assets/css/leadmark.css') }}">
+
+<style>
+    /* Fondo de pantalla completo */
+    
+    body {
+        background: url("{{ url_for('static', filename='assets/imgs/cliente.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        /* Letras blancas por defecto */
+    }
+    /* Capa de oscurecimiento */
+    
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.70);
+        z-index: -1;
+    }
+    /* Tarjetas transparentes de productos */
+    
+    .producto-card {
+        background: rgba(0, 0, 0, 0.45);
+        /* Fondo semi-transparente */
+        backdrop-filter: blur(4px);
+        border-radius: 15px;
+        padding: 20px;
+        color: white;
+        /* Letras blancas */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        /* Sombra suave */
+    }
+    
+    .producto-card .card-title,
+    .producto-card .card-text,
+    .producto-card p,
+    .producto-card strong {
+        color: white;
+    }
+</style>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <!-- NAVBAR ESPECIAL PARA CLIENTE -->
+    <nav class="navbar custom-navbar navbar-expand-md navbar-light fixed-top"
+        data-spy="affix" data-offset-top="10">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img
+                    src="{{ url_for('static', filename='assets/imgs/logo.svg') }}"
+                    alt="HardNet">
+            </a>
+            <button class="navbar-toggler ml-auto" type="button"
+                data-toggle="collapse" data-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.dashboard') }}">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('pedido_controller.listar_pedidos') }}">Aprobar
+                            Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.listar_ventas') }}">Ventas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.clientes') }}">
+                            Clientes
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.empleados') }}">
+                            Empleados
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.proveedores') }}">
+                            Proveedores
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ url_for('admin_controller.categorias') }}">
+                            Categoría
+                        </a>
+                    </li>
+
+                    <!-- CERRAR SESION -->
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle btn btn-primary btn-sm rounded text-white ml-3"
+                                href="#" data-bs-toggle="dropdown">{{
+                                session.usuario }}</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item"
+                                        href="{{ url_for('auth_controller.logout') }}">Cerrar
+                                        Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- JS Scripts -->
+    <script
+        src="{{ url_for('static', filename='assets/vendors/jquery/jquery-3.4.1.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.bundle.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/bootstrap/bootstrap.affix.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/vendors/isotope/isotope.pkgd.js') }}"></script>
+    <script
+        src="{{ url_for('static', filename='assets/js/leadmark.js') }}"></script>
+
+</body>
+
+<!-- ESPACIO PARA QUE NO SE OCUPE LA NAVBAR -->
+<div style="margin-top: 100px;"></div>
+
+<!-- LISTA DE PRODUCTOS -->
+<!-- BOTÓN PARA AGREGAR PRODUCTO -->
+
+<section id="products" class="container mt-5">
+    <div class="text-right mb-4">
+        <a href="{{ url_for('admin_controller.form_agregar_producto') }}"
+            class="btn btn-success btn-lg">
+            + Agregar Producto
+        </a>
+    </div>
+
+    <h2 class="text-center text-white mb-4">Gestión de Productos</h2>
+
+    <div class="row">
+        {% for p in productos %}
+        <div class="col-md-4 mb-4">
+            <div class="card producto-card h-100 shadow-lg">
+
+                <!-- Imagen -->
+                <img
+                    src="{% if p.imagen %}{{ url_for('static', filename='uploads/' ~ p.imagen) }}{% else %}{{ url_for('static', filename='assets/imgs/no-image.png') }}{% endif %}"
+                    class="card-img-top"
+                    style="height: 220px; object-fit: contain; background: #fff;">
+
+                <div class="card-body">
+
+                    <h5 class="card-title">{{ p.nombre }}</h5>
+                    <p class="card-text">{{ p.descripcion }}</p>
+
+                    <p class="card-text">
+                        <strong>Precio:</strong> ${{ "%.2f"|format(p.precio) }}
+                    </p>
+
+                    {% if p.stock > 0 %}
+                    <p class="text-success">Stock: {{ p.stock }}</p>
+                    {% else %}
+                    <p class="text-danger">Sin stock</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -33,9 +33,9 @@ def create_app():
 
     return app
 
-# Instancia global
+# === INSTANCIA GLOBAL PARA GUNICORN ===
 app = create_app()
 
 if __name__ == "__main__":
+    # Solo se ejecuta si corres python app.py localmente
     app.run(debug=True)
-

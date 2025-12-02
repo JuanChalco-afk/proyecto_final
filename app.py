@@ -5,8 +5,8 @@ from models.database import create_tables
 def create_app():
     app = Flask(
         __name__,
-        template_folder='views',   # <-- carpeta para tus HTML
-        static_folder='static'     # <-- carpeta para archivos estáticos
+        template_folder='views',
+        static_folder='static'
     )
 
     app.config.from_object(Config)
@@ -33,6 +33,9 @@ def create_app():
 
     return app
 
+# Instancia global
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
     app.run(debug=True)
+

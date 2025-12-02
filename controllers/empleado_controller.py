@@ -188,7 +188,7 @@ def reporte_ventas():
 # ------------------------------------------
 # VER LISTA DE PEDIDOS PENDIENTES
 # ------------------------------------------
-@empleado_controller.route("/empleado/pedidos")
+@empleado_controller.route("/pedidos")
 def listar_pedidos():
     conn = get_db_connection()
     pedidos = conn.execute("""
@@ -206,26 +206,21 @@ def listar_pedidos():
 # ------------------------------------------
 # APROBAR PEDIDO → PASA A VENTA
 # ------------------------------------------
-@empleado_controller.route("/empleado/pedidos/aprobar/<int:pedido_id>", methods=["POST"])
+@empleado_controller.route("/pedidos/aprobar/<int:pedido_id>", methods=["POST"])
 def aprobar_pedido(pedido_id):
     conn = get_db_connection()
 
-    # Obtener pedido y sus detalles
     pedido = conn.execute("SELECT * FROM pedido WHERE id = ?", (pedido_id,)).fetchone()
     detalles = conn.execute("SELECT * FROM detalle_pedido WHERE pedido_id = ?", (pedido_id,)).fetchall()
 
-    # Cambiar estado
     conn.execute("UPDATE pedido SET estado = 'confirmado' WHERE id = ?", (pedido_id,))
-
-    # Registrar la venta
     conn.execute("""
         INSERT INTO venta (pedido_id, tipo_pago_id, fecha, total)
         VALUES (?, ?, ?, ?)
-    """, (pedido_id, 1, datetime.now().strftime("%Y-%m-%d"), pedido["total"]))
+    """, (pedido_id, 1, datetime.datetime.now().strftime("%Y-%m-%d"), pedido["total"]))
 
     venta_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
 
-    # Registrar detalle venta
     for d in detalles:
         conn.execute("""
             INSERT INTO detalle_venta (venta_id, producto_id, cantidad, precio)
